@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Contact Us</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <!-------------------------------------------------------------------------------------------------------------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+
+        body {
+            font-family: 'Kanit', sans-serif;  
+        }
+       h2{
+        color:  #04204a;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    <br>
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">ติดต่อ</h2>
+            <h3 class="section-subheading text-muted">เสนอแนะ/แนะนำเกี่ยวกับสถานที่ท่องเที่ยว</h3>
+        </div>
+        <br>
+        <form method='POST' accept="/contact" id="contact2">
+            <div class="row align-items-stretch mb-5">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input class="form-control" id="name" type="text" placeholder="ชื่อ *" required="required"
+                            data-validation-required-message="Please enter your name." />
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="email" type="email" placeholder="อีเมลล์ *" required="required"
+                            data-validation-required-message="Please enter your email address." />
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="form-group mb-md-0">
+                        <input class="form-control" id="tel" type="tel" placeholder="เบอร์ *" required="required"
+                            data-validation-required-message="Please enter your phone number." />
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-textarea mb-md-0">
+                        <textarea class="form-control" id="msg" placeholder="ข้อเสนอเเนะ *" required="required"
+                            data-validation-required-message="Please enter a message." rows="6"></textarea>
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+            </div>
+            <p id="con_res"></p>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-xl text-uppercase">ส่ง</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- <button type="submit" id="testsunmit" onclick="testsubmit()">test submit</button> -->
+
+    <br>
+    <script>
+        $("#contact2").submit(function (event) {
+            var formData3 = { //ทำเป็น json
+                'name': $("#name").val(),
+                'email': $("#email").val(),
+                'tel': $("#tel").val(),
+                'msg': $("#msg").val(),
+            }
+            // alert("--");
+            $.ajax({
+                url: "/contact",
+                type: "POST",
+                data: formData3,
+                dataType: 'json',
+                encode: true,
+                cache: false,
+            }).done(function (data) {
+                console.log(data)
+            })
+        })
+    </script>
+</body>
+
+</html>

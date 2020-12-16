@@ -103,17 +103,25 @@ body {
 }
 
 
+
 /*updateCovid*/
 
 .updateCovid {
-    padding: 40px 0;
-    text-align: center;
+    padding: 80px 0;
+    /* text-align: center; */
     background-color: #04204a1a;
 }
-
+.updateCovid h3 {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #04204a;
+}
 .updateCovid p {
-    font-size: 25px;
-    margin-bottom: 55px;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 50px;
     color: #04204a;
 }
 
@@ -124,8 +132,9 @@ body {
     border-style: none;
 }
 
+
 .updateCovid .map {
-    width: 800;
+    width: 100%;
     height: 350px;
     display: block;
     border-style: none;
