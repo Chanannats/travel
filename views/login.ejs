@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title> Login </title>
+
+    <style>
+        .login-form {
+            width: 300px;
+            margin: 0 auto;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .login-form {
+            text-align: center;
+            color: #44dd44;
+            font-size: 24px;
+            padding: 20px 0 20px 0;
+        }
+        
+        .login-form input[type='Password'],
+        .login-form input[type='text'] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+        
+        .login-form input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: #535b63;
+            border: 0;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        a {
+            font-size: 18px;
+            color: #535b63;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-form">
+        <h1>Login Form</h1>
+        <form>
+            <input type="text" name="Username" placeholder="Username" id="user" required>
+            <!--  เวลา user กรอกข้อมูลไม่ครบก็ไม่สามารถกด submit ได้ -->
+            <input type="password" name="Password" placeholder="Password" id="pass" required>
+            <button type="submit" form="nameform" value="Submit" id="submit">Submit</button>
+            <p><a href="/register">ยังไม่ได้ลงทะเบียน?</a></p>
+        </form>
+    </div>
+    <script>
+        document.getElementById("submit").addEventListener("click", btn)
+
+        function btn() {
+            var user = document.getElementById("user").value;
+            var pass = document.getElementById("pass").value;
+            var url = 'http://localhost:3000/login/' + user + "/" + pass;
+            console.log(url)
+            $.get(url, function(result) {
+                console.log(result)
+                if (result == "1") {
+                    window.location.replace("/")
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
