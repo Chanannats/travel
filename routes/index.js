@@ -6,13 +6,7 @@ var user = ""
 router.get('/', function (req, res, next) {
     res.render('index', { title: 'Express' });
 });
-router.get('/login', function (req, res, next) {
-    res.render('login', { title: 'Express' });
-});
-
-router.get('/register', function (req, res, next) {
-    res.render('register', { title: 'Express' });
-});
+;
 router.get('/contact', function (req, res, next) {
     res.render('contact', { title: 'Express' });
 });
@@ -37,52 +31,6 @@ db.connect(function (err) {
     } else {
         console.log("database connected...");
     }
-});
-
-// ------------------login----------------------
-router.get('/login/:Username/:Password', function (req, res) {
-    console.log('login');
-    var Username = req.params.Username;
-    var Password = req.params.Password; //รับข้อมูลมาจากbody
-    sql = "SELECT * FROM `accounts` WHERE `Username` = '" + Username + "'" + " AND `Password` = '" + Password + "'"; //เช็คใน db
-    console.log(sql);
-    db.query(sql, function (err, results) {
-        if (results == "") {
-            console.log("not found user or password" + results)
-        } else {
-            results = "1"
-            console.log('user and password match')
-            res.send(results)
-        }
-    });
-});
-
-router.post('/register', function (req, res) {
-    //console.log("req",req.body);
-    var today = new Date();
-    var users = {
-        "Username": req.body.Username,
-        //"Email":req.body.Email,
-        "Password": req.body.Password,
-        "submit": req.body.submit
-        // "created":today,
-        // "modified":today
-    };
-    db.query('INSERT INTO accounts SET ?', users, function (error, results, fields) {
-        if (error) {
-            console.log("error ocurred", error);
-            res.send({
-                "code": 200,
-                "failed": "error ocurred"
-            });
-        } else {
-            console.log('The solution is: ', results);
-            res.send({
-                "code": 204,
-                "success": "user registered sucessfully"
-            });
-        }
-    });
 });
 
 router.get("/history", function (req, res, next) {
@@ -129,17 +77,16 @@ router.get("/kohTachai", function (req, res, next) {
     res.render("kohTachai")
 });
 
-router.get('/detail1/:id', function (req, res, result) {
+router.get('/detail1/:id', function (req, res, result) {   // รับค่า id
     var id = req.params.id
     sql = "SELECT `Island_Id`, `detail`, `popular`, `addltion`, `recommend`,`contact` FROM `island` WHERE 1"
     dbinfo.query(sql, function (err, result) {
-        console.log("o-----");
         res.send(result[id]);
     });
 });
 
 router.post('/contact', function (req, res) {
-    var name = req.body.name;
+    var name = req.body.name;      //รับค่าจาก ajax
     var email = req.body.email;
     var phone = req.body.tel;
     var message = req.body.msg;

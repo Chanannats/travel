@@ -25,7 +25,7 @@
             <ul class="navbar-nav my-2 my-lg-0">
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav">
-                        <a href="/index" class="nav-item nav-link active">หน้าแรก</a>
+                        <a href="" class="nav-item nav-link ">หน้าแรก</a>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-display="static" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สถานที่ท่องเที่ยว</a>
                             <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdown">
@@ -54,14 +54,7 @@
                     </div>
                     <a href="/contact" class="nav-item nav-link">ติดต่อ</a>
 
-                    <li class="nav-item dropdown ml-auto">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-display="static" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
-                        <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/login">เข้าสู่ระบบ</a>
-                            <a class="dropdown-item" href="/register">ลงทะเบียน</a>
-                            <a class="dropdown-item" href="#">ออกจากระบบ</a>
-                        </div>
-                    </li>
+                   
             </ul>
             </div>
     </nav>
@@ -172,7 +165,7 @@
                     <h3>อัพเดตสถานการณ์โควิทใน จ. พังงา</h3>
                     <div class="card text-white bg-secondary mb-3" style="width: 32rem; height: 10rem;">
                         <div class="card-body">
-                            <p id="show"></p>
+                            <p id="show"></p>  
                         </div>
                     </div>
                 </div>
@@ -338,21 +331,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
-        document.getElementById("show").innerHTML = covid(); // 
+        document.getElementById("show").innerHTML = covid(); 
 
         function covid() {
             var url = 'https://covid19.th-stat.com/api/open/cases'; // get ข้อมูลมา ผ่าน fetch
             fetch(url)
-                .then((r) => r.json())
+                .then((r) => r.json()) //รับมาเป็น json
                 .then(function(data) {
                     var x = 0; //จำนวนผู้ป่วย
                     var y = 0; //หายแล้ว
                     var z = 0; //กำลังรักษา
                     for (i = 0; i < data.Data.length; i++) { // วนลูปเท่ารอบ data ทั้งหมด
                         if (data.Data[i].ProvinceId == 34) {
-                            //https://www.govesite.com/uploads/20150616220039Pp9UPrr/20180720112427_3_hDHa8tk.pdf อันนี้ลำดีบจังหวัด
-                            //ลำดับที่34คือจังหวัด
-                            x++;
+                            
+                            x++;  //ถ้าป่วยแล้วตรงกับ 34 ให้  count
                             if (data.Data[i].StatQuarantine == 0) { // เช็คว่า stateQuarantin หายแล้วกี่คน กำลังรักษากี่คน
                                 y++;
                             } else z++;

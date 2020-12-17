@@ -44,7 +44,7 @@
             <h3 class="section-subheading text-muted">เสนอแนะ/แนะนำเกี่ยวกับสถานที่ท่องเที่ยว</h3>
         </div>
         <br>
-        <form method='POST' accept="/contact" id="contact2">
+        <form id="contact2">
             <div class="row align-items-stretch mb-5">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -82,17 +82,16 @@
 
     <br>
     <script>
-        $("#contact2").submit(function (event) {
-            var formData3 = { //ทำเป็น json
-                'name': $("#name").val(),
+        $("#contact2").submit(function (event) { //กด submit จะรัน
+            var formData3 = { 
+                'name': $("#name").val(), 
                 'email': $("#email").val(),
                 'tel': $("#tel").val(),
                 'msg': $("#msg").val(),
             }
-            // alert("--");
-            $.ajax({
-                url: "/contact",
-                type: "POST",
+            $.ajax({    
+                url: "/contact", 
+                type: "POST", 
                 data: formData3,
                 dataType: 'json',
                 encode: true,
